@@ -6,7 +6,7 @@
      <meta name="author" content="Luidjy Aubel">
   </head>
   <body>
-      <form action="?CMD=NEW" method="post">
+      <form action="?CMD=NEW&CMD2=CO" method="post">
         <p>Nom de l'auteur</p><br/>
         <input type="text" name="auteur" placeholder="Nom de l'auteur"/><br/>
         <p>selection de la page</p>
@@ -31,6 +31,19 @@
         echo nl2br($article);
         //echo "$article";
         }
+        function connect (){
+            $auteur = $_POST['auteur'];
+            $article = $_POST['text1'];
+            $Page = $_POST['Page'];
+            $dateAr = strftime('%d/%m/%y, %H:%M');
+         $DataBase = mysqli_connect('localhost:3308', 'root', '', 'interface');
+
+         $Requete = "INSERT INTO article (id, NomA, PageS,textA, dateAr ) 
+         VALUES (NULL,'$auteur','$Page', '$article', '$dateAr');";
+        echo '<hr>REQUETE = ' .$Requete. '<hr>';
+        $Resultat = mysqli_query ( $DataBase, $Requete )  or  die(mysqli_error($DataBase) ) ;
+        mysqli_close ( $DataBase ) ;  
+        }
         
         $CMD = "RIEN";
 
@@ -42,6 +55,18 @@
             switch( $CMD )	
             { case 'NEW' : article();	break;
             default : echo 'ERREUR CMD inconnue '.$CMD ;
+        } } }
+
+        $CMD2 = "RIEN";
+
+        if( count($_GET) != 0 )
+        { if( ! isset($_GET['CMD2']) )
+            echo 'ERREUR CMD2 non définie' ;
+          else
+          { $CMD2 = $_GET['CMD2'] ;
+            switch( $CMD2 )	
+            { case 'CO' : connect();	break;
+            default : echo 'ERREUR CMD2 inconnue '.$CMD ;
         } } }
     ?>
   </body>
