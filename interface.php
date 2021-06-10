@@ -20,7 +20,8 @@
         setlocale(LC_TIME, 'fra_fra');
         $dateAr = strftime('%d/%m/%y, %H:%M');
         echo "ce texte est écrit par $auteur, le $dateAr <br/><br/>";
-        echo "$article";
+        echo nl2br($article);
+        //echo "$article";
         }
         
         $CMD = "RIEN";
