@@ -42,6 +42,7 @@
          VALUES (NULL,'$auteur','$Page', '$article', '$dateAr');";
         echo '<hr>REQUETE = ' .$Requete. '<hr>';
         $Resultat = mysqli_query ( $DataBase, $Requete )  or  die(mysqli_error($DataBase) ) ;
+        //mysqli_free_result ( $Resultat ) ;
         mysqli_close ( $DataBase ) ;  
         }
         
@@ -69,5 +70,6 @@
             default : echo 'ERREUR CMD2 inconnue '.$CMD ;
         } } }
     ?>
+    <a href="Blog.php">Voir les messages</a>
   </body>
 </html>
