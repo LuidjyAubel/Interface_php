@@ -12,6 +12,11 @@
         <p>selection de la page</p>
         <select name="Page">
         <option value="" select>--Please choose an option--</option>
+        <option value="accueil">Accueil</option>
+        <option value="compétances">Compétances</option>
+        <option value="documentation">Documentation</option>
+        <option value="cv">CV</option>
+        <option value="contact">Contact</option>
         <option value="blog">Blog</option>
         <option value="veille">veille</option>
         </select><br/>
@@ -37,9 +42,13 @@
             $Page = $_POST['Page'];
             $dateAr = strftime('%d/%m/%y, %H:%M');
          $DataBase = mysqli_connect('localhost:3308', 'root', '', 'interface');
-
+          if ($Page == "blog"){
          $Requete = "INSERT INTO article (id, NomA, PageS,textA, dateAr ) 
          VALUES (NULL,'$auteur','$Page', '$article', '$dateAr');";
+         }else if ($Page =="veille") {
+          $Requete = "INSERT INTO veille (id, NomA, PageS,textA, dateAr ) 
+          VALUES (NULL,'$auteur','$Page', '$article', '$dateAr');";
+         }
         echo '<hr>REQUETE = ' .$Requete. '<hr>';
         $Resultat = mysqli_query ( $DataBase, $Requete )  or  die(mysqli_error($DataBase) ) ;
         //mysqli_free_result ( $Resultat ) ;
@@ -70,6 +79,7 @@
             default : echo 'ERREUR CMD2 inconnue '.$CMD ;
         } } }
     ?>
-    <a href="Blog.php">Voir les messages</a>
+    <a href="Blog.php">Voir les messages du blog</a><br/>
+    <a href="veille.php">Voir la veille</a>
   </body>
 </html>
