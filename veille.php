@@ -8,6 +8,9 @@
   <body>
   <h1> Veille technologique  </h1>
 <?php
+echo "<p> Ce texte est écrit par luidjy aubel, le 16/06/21 sur la page Veille</p>" ;
+text();
+function text(){
  //--- Connection au SGBDR 
  $DataBase = mysqli_connect('localhost:3308', 'root', '', 'interface');
  //--- Préparation de la requête
@@ -19,7 +22,9 @@
  {
    //--- Afficher une ligne du tableau HTML pour chaque enregistrement de la table 
    //echo "<p>" . $ligne['id']        . "</p>\n" ;
-   echo "<p> Ce texte est écrit par ".$ligne['NomA'].", le ".$ligne['dateAr']." sur la page ".$ligne['PageS']."</p>" ;
+   $NomA = $ligne['NomA'];
+   $dateAr = $ligne['dateAr'];
+   $Page = $ligne['PageS'];
    echo "<p>" . nl2br($ligne['textA']) . "</p>\n" ;
    echo "\n\n";
  
@@ -27,29 +32,8 @@
  //--- Libérer l'espace mémoire du résultat de la requête
 // mysqli_free_result ( $Resultat ) ;
  //--- Déconnection de la base de données
- mysqli_close ( $DataBase ) ;  
-
- echo "<table cellspacing=0 cellpadding=0 border=1 align='center'>\n";
-  echo "<tr><th> Nom </th></tr>\n";
- $dir    = 'upload';
-$files1 = scandir($dir);
-//print_r($files1);
-foreach ($files1 as $key => $value)	// scanner répertoire
-{
-echo "<tr>" ;		// traitement normal pour un fichier
-
-echo "<td>". $value . "</td>" ;
-  echo "</tr>\n";
-
-  if ($value == "1.jpg"){
-    echo "$files1";
-  }
+ mysqli_close ( $DataBase ) ; 
 }
-echo "</table>\n";
-$curdir = getcwd();
-$rt = dirname('upload');
-$curdir = $curdir."/".$rt;
-echo "$curdir <br/>";
 ?>
 <a href="interface.php">écrire</a>
   </body>
