@@ -8,6 +8,7 @@
   <body>
   <h1> Blog Guitare  </h1>
 <?php
+  $cpt = 0;
  //--- Connection au SGBDR 
  $DataBase = mysqli_connect('localhost:3308', 'root', '', 'interface');
  //--- Préparation de la requête
@@ -19,10 +20,12 @@
  {
    //--- Afficher une ligne du tableau HTML pour chaque enregistrement de la table 
    //echo "<p>" . $ligne['id']        . "</p>\n" ;
+   echo "<div class='".$cpt."'>";
    echo "<p> Ce texte est écrit par ".$ligne['NomA'].", le ".$ligne['dateAr']." sur la page ".$ligne['PageS']."</p>" ;
-   echo "<p>" . nl2br($ligne['textA']) . "</p>\n" ;
+   echo "<p style='color:".$ligne['colorTex']."'>" . nl2br($ligne['textA']) . "</p>\n" ;
    echo "\n\n";
- 
+   echo "</div>";
+   $cpt = $cpt + 1;
  }
  //--- Libérer l'espace mémoire du résultat de la requête
 // mysqli_free_result ( $Resultat ) ;

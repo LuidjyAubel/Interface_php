@@ -10,7 +10,7 @@
         <p>Nom de l'auteur</p><br/>
         <input type="text" name="auteur" placeholder="Nom de l'auteur"/><br/>
         <p>selection de la page</p>
-        <select name="Page">
+        <select name="Page" require>
         <option value="" select>--Please choose an option--</option>
         <option value="accueil">Accueil</option>
         <option value="compétances">Compétances</option>
@@ -20,8 +20,19 @@
         <option value="blog">Blog</option>
         <option value="veille">veille</option>
         </select><br/>
-        <p>Article</p><br/>
-        <textarea name="text1" rows="9" cols="50" placeholder="Votre text ici !"></textarea><br/>
+        <p>selection de la couleur du texte</p>
+        <select name="colorT" require>
+        <option value="" select>--Please choose an option--</option>
+        <option value="red">rouge</option>
+        <option value="green">vert</option>
+        <option value="black">noir</option>
+        <option value="blue">bleu</option>
+        <option value="yellow">jaune</option>
+        <option value="pink">rose</option>
+        <option value="orange">orange</option>
+        </select><br/>
+        <p>Texte</p><br/>
+        <textarea name="text1" rows="9" cols="50" placeholder="Votre text ici !" require></textarea><br/>
         <input type="submit" name="publier" value="Publier"/><br/>
       </form>
       <?php
@@ -29,10 +40,12 @@
         $auteur = $_POST['auteur'];
         $article = $_POST['text1'];
         $Page = $_POST['Page'];
+        $colorT = $_POST['colorT'];
         setlocale(LC_TIME, 'fra_fra');
         $dateAr = strftime('%d/%m/%y, %H:%M');
         echo "ce texte est écrit par $auteur, le $dateAr <br/>";
-        echo "votre article est publier sur la page $Page de votre site<br/><br/>";
+        echo "votre article est publier sur la page $Page de votre site<br/>";
+        echo "vous avais mis votre text en $colorT<br/><br/>";
         echo nl2br($article);
         //echo "$article";
         }
@@ -40,14 +53,15 @@
             $auteur = $_POST['auteur'];
             $article = $_POST['text1'];
             $Page = $_POST['Page'];
+            $colorT = $_POST['colorT'];
             $dateAr = strftime('%d/%m/%y, %H:%M');
          $DataBase = mysqli_connect('localhost:3308', 'root', '', 'interface');
           if ($Page == "blog"){
-         $Requete = "INSERT INTO article (id, NomA, PageS,textA, dateAr ) 
-         VALUES (NULL,'$auteur','$Page', '$article', '$dateAr');";
+         $Requete = "INSERT INTO article (id, NomA, PageS,textA, dateAr, colorTex ) 
+         VALUES (NULL,'$auteur','$Page', '$article', '$dateAr', '$colorT');";
          }else if ($Page =="veille") {
-          $Requete = "INSERT INTO veille (id, NomA, PageS,textA, dateAr ) 
-          VALUES (NULL,'$auteur','$Page', '$article', '$dateAr');";
+          $Requete = "INSERT INTO veille (id, NomA, PageS,textA, dateAr, colorTex ) 
+          VALUES (NULL,'$auteur','$Page', '$article', '$dateAr', '$colorT');";
          }
         echo '<hr>REQUETE = ' .$Requete. '<hr>';
         $Resultat = mysqli_query ( $DataBase, $Requete )  or  die(mysqli_error($DataBase) ) ;

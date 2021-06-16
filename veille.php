@@ -28,6 +28,28 @@
 // mysqli_free_result ( $Resultat ) ;
  //--- Déconnection de la base de données
  mysqli_close ( $DataBase ) ;  
+
+ echo "<table cellspacing=0 cellpadding=0 border=1 align='center'>\n";
+  echo "<tr><th> Nom </th></tr>\n";
+ $dir    = 'upload';
+$files1 = scandir($dir);
+//print_r($files1);
+foreach ($files1 as $key => $value)	// scanner répertoire
+{
+echo "<tr>" ;		// traitement normal pour un fichier
+
+echo "<td>". $value . "</td>" ;
+  echo "</tr>\n";
+
+  if ($value == "1.jpg"){
+    echo "$files1";
+  }
+}
+echo "</table>\n";
+$curdir = getcwd();
+$rt = dirname('upload');
+$curdir = $curdir."/".$rt;
+echo "$curdir <br/>";
 ?>
 <a href="interface.php">écrire</a>
   </body>
