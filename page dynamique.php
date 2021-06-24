@@ -6,27 +6,35 @@
      <meta name="author" content="Luidjy Aubel">
   </head>
   <body>
+  <form action="?CMD=HTML" method="post">
+        <p>Nom de l'auteur</p>
+        <input type="text" name="author" placeholder="Nom de l'auteur"/><br/>
+        <p>Nom du fichier</p>
+        <input type="text" name="Ftitle" placeholder="Nom du fichier"/><br/>
+        <p>titre de la page</p>
+        <input type="text" name="Ptitle" placeholder="titre de la page"/><br/>
+        <p>Texte</p>
+        <textarea name="text1" rows="9" cols="50" placeholder="Votre text ici !" require></textarea><br/>
+        <input type="submit" name="publier" value="Publier"/><br/>
+      </form>
     <?php
-    function BTN1(){
-        echo "<button><a href='?CMD=ADD'>+</a><td></button><br/>";
-    }
-    function divCont(){
-      echo "<div>";
-      echo "Le switch fonctionne"; // debug
-      echo "<button><a href='?CMD=ADD'>+</a><td></button><br/>"
-      echo "</div>";
-      BTN1();
-    }
     function HTMLFICH(){
-      echo "créer et éditer un fichier HTML";
-      $fichier = $_POST['NomP'].".html";
+      echo "créer un fichier HTML<br/>";
+      $Ptitle = $_POST['Ptitle'];
+      $author = $_POST['author'];
+      $Ftitle = $_POST['Ftitle'];
+      $Contenu = "<p>".$_POST['text1']."</p>";
+      $metadata = "<meta charset='utf-8'/>
+      <title>$Ptitle</title>
+      <meta name='author' content='$author'>";
+      $fichier ="$Ftitle.html";
      file_put_contents($fichier, "<!doctype html>",FILE_APPEND) ;
 	   file_put_contents($fichier, "<html>",FILE_APPEND) ;
 	   file_put_contents($fichier, "<head>",FILE_APPEND) ;
 	   file_put_contents($fichier, "$metadata",FILE_APPEND) ;
 	   file_put_contents($fichier, "</head>",FILE_APPEND) ;
 	   file_put_contents($fichier, "<body>",FILE_APPEND) ;
-	   file_put_contents($fichier, "$Contenu",FILE_APPEND) ;
+	   file_put_contents($fichier, nl2br($Contenu),FILE_APPEND) ;
 	   file_put_contents($fichier, "</body>",FILE_APPEND) ;
 	   file_put_contents($fichier, "</html>",FILE_APPEND) ;
     }
@@ -40,14 +48,9 @@
     else
       { $CMD = $_GET['CMD'] ; //Appeler la commande demandée
         switch( $CMD )	
-        { case 'ADD' : divCont();	break;
-          case 'HTML' : HTMLFICH(); break;
+        { case 'HTML' : HTMLFICH(); break;
         default : echo 'ERREUR CMD inconnue '.$CMD ;
     } } }
-
-    if ($CMD != "ADD")
-    BTN1();	// Afficher le contenu à chaque fois !
-
     ?>
     <a href="images_bank.php">Voir les images du dossier upload</a><br/>
     <a href="interface.php">Publier sur le Blog ou la veille</a><br/>
