@@ -24,14 +24,26 @@
    echo "<p> Ce texte est écrit par ".$ligne['NomA'].", le ".$ligne['dateAr']." sur la page ".$ligne['PageS']."</p>" ;
    echo "<p style='color:".$ligne['colorTex']."'>" . nl2br($ligne['textA']) . "</p>\n" ;
    echo "\n\n";
+   if (! empty($ligne['Iname']) && (isset($ligne['Iname']))){
+    $dir    = 'upload';
+  $files1 = scandir($dir);
+  $dir = $dir."/".$ligne['Iname'];
+  //echo "fichier : $dir <br/>";
+  echo "<img src='".$dir."' alt='image' style='width: 100px; height: 100px;'/>";
+  $dir    = 'upload';
+   }
+   }
    echo "</div>";
    $cpt = $cpt + 1;
- }
+ 
  //--- Libérer l'espace mémoire du résultat de la requête
 // mysqli_free_result ( $Resultat ) ;
  //--- Déconnection de la base de données
  mysqli_close ( $DataBase ) ;  
 ?>
-<a href="interface.php">écrire</a>
+    <a href="images.php">Pour upload des images</a><br/>
+    <a href="images_bank.php">Voir les images du dossier upload</a><br/>
+    <a href="interface.php">écrire</a><br/>
+    <a href="veille.php">Voir la veille</a>
   </body>
 </html>

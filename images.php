@@ -36,7 +36,7 @@
         $extensions = ['jpg', 'png', 'jpeg', 'gif', 'pdf', 'css', 'html'];
         if(in_array($extension, $extensions)){
                         move_uploaded_file($tmpName, './upload/'.$name);
-                        echo "Votre fichier a été téléchargé avec succès.";
+                        echo "Votre fichier a été téléchargé avec succès.<br/>";
                 $_FILES['file'] = null;
           }
           else{
@@ -44,6 +44,10 @@
         }
         
         }
+
         ?>
+        <a href="images_bank.php">Voir les images du dossier upload</a><br/>
+        <a href="Blog.php">Voir les messages du blog</a><br/>
+        <a href="veille.php">Voir la veille</a>
   </body>
 </html>

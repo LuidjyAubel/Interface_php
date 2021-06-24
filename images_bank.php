@@ -23,15 +23,17 @@ else if( $value == '..' ) continue;
 //echo "fichier : $value <br/>";
 $dir = $dir."/".$value;
   echo"<tr>";
-  echo "<td><img src='".$dir."' alt='image' style='width: 100px; height: 100px;'/><br/></td>";
+  echo "<td><img src='".$dir."' alt='image' style='width: 100px; height: 100px;'/></td>";
   echo "<td><p>nom de l'image : $value</p></td>";
-  echo "<td><p>chemin d'accès de l'image par rapport au dossier courrant : $dir</p></td> <br/>";
+  echo "<td><p>chemin d'accès de l'image par rapport au dossier courrant : $dir</p><br/>";
   echo "</tr>";
   $dir    = 'upload';
 }
 echo "</table>";
 ?>
-<a href="interface.php">écrire</a>
-<a href="images.php">interface</a>
+ <a href="Blog.php">Voir les messages du blog</a><br/>
+    <a href="images.php">Pour upload des images</a><br/>
+    <a href="interface.php">écrire</a>
+    <a href="veille.php">Voir la veille</a>
   </body>
 </html>

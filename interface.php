@@ -13,7 +13,7 @@
         <select name="Page" require>
         <option value="" select>--Please choose an option--</option>
         <option value="accueil">Accueil</option>
-        <option value="compétances">Compétances</option>
+        <option value="competances">Compétances</option>
         <option value="documentation">Documentation</option>
         <option value="cv">CV</option>
         <option value="contact">Contact</option>
@@ -31,6 +31,8 @@
         <option value="pink">rose</option>
         <option value="orange">orange</option>
         </select><br/>
+        <p>Nom de l'image</p><br/>
+        <input type="text" name="Iname" placeholder="Nom de l'image (avec l'extention)"/><br/>
         <p>Texte</p><br/>
         <textarea name="text1" rows="9" cols="50" placeholder="Votre text ici !" require></textarea><br/>
         <input type="submit" name="publier" value="Publier"/><br/>
@@ -62,6 +64,11 @@
          }else if ($Page =="veille") {
           $Requete = "INSERT INTO veille (id, NomA, PageS,textA, dateAr, colorTex ) 
           VALUES (NULL,'$auteur','$Page', '$article', '$dateAr', '$colorT');";
+         }else if ($Page =="competances") {
+          $Requete = "INSERT INTO comp (id, NomA, PageS,textA, dateAr, colorTex ) 
+          VALUES (NULL,'$auteur','$Page', '$article', '$dateAr', '$colorT');";
+         }else{
+           echo "ERROR : PAGE NON DEFINI OU MANQUANTE";
          }
         echo '<hr>REQUETE = ' .$Requete. '<hr>';
         $Resultat = mysqli_query ( $DataBase, $Requete )  or  die(mysqli_error($DataBase) ) ;
@@ -93,7 +100,9 @@
             default : echo 'ERREUR CMD2 inconnue '.$CMD ;
         } } }
     ?>
+    <a href="images_bank.php">Voir les images du dossier upload</a><br/>
     <a href="Blog.php">Voir les messages du blog</a><br/>
+    <a href="images.php">Pour upload des images</a><br/>
     <a href="veille.php">Voir la veille</a>
   </body>
 </html>
