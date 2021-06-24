@@ -15,6 +15,8 @@
         <input type="text" name="Ptitle" placeholder="titre de la page"/><br/>
         <p>Texte</p>
         <textarea name="text1" rows="9" cols="50" placeholder="Votre text ici !" require></textarea><br/>
+        <p> Ajouter une image</p>
+        <input type="checkbox" name="image" value="image"><br/>
         <input type="submit" name="publier" value="Publier"/><br/>
       </form>
     <?php
@@ -23,6 +25,11 @@
       $Ptitle = $_POST['Ptitle'];
       $author = $_POST['author'];
       $Ftitle = $_POST['Ftitle'];
+      $image =  $_POST['image'];
+      $curdir = scandir($Nomdir);
+      for ($curdir == $imageC2){
+        $imageC = "<img src='".$imageN."'>";
+      }
       $Contenu = "<p>".$_POST['text1']."</p>";
       $metadata = "<meta charset='utf-8'/>
       <title>$Ptitle</title>
@@ -31,10 +38,13 @@
      file_put_contents($fichier, "<!doctype html>",FILE_APPEND) ;
 	   file_put_contents($fichier, "<html>",FILE_APPEND) ;
 	   file_put_contents($fichier, "<head>",FILE_APPEND) ;
-	   file_put_contents($fichier, "$metadata",FILE_APPEND) ;
+	   file_put_contents($fichier, "$metadata",FILE_APPEND);
 	   file_put_contents($fichier, "</head>",FILE_APPEND) ;
 	   file_put_contents($fichier, "<body>",FILE_APPEND) ;
 	   file_put_contents($fichier, nl2br($Contenu),FILE_APPEND) ;
+     if ($image == true){
+      file_put_contents($fichier, $imageC,FILE_APPEND) ;
+     }
 	   file_put_contents($fichier, "</body>",FILE_APPEND) ;
 	   file_put_contents($fichier, "</html>",FILE_APPEND) ;
     }
