@@ -26,10 +26,10 @@
       $author = $_POST['author'];
       $Ftitle = $_POST['Ftitle'];
       $image =  $_POST['image'];
-      $curdir = scandir($Nomdir);
-      for ($curdir == $imageC2){
-        $imageC = "<img src='".$imageN."'>";
-      }
+      //$curdir = scandir($Nomdir);
+      //for ($imageN == $imageC2){
+       // $imageC = "<img src='".$imageN."'>";
+     // }
       $Contenu = "<p>".$_POST['text1']."</p>";
       $metadata = "<meta charset='utf-8'/>
       <title>$Ptitle</title>
@@ -38,12 +38,16 @@
      file_put_contents($fichier, "<!doctype html>",FILE_APPEND) ;
 	   file_put_contents($fichier, "<html>",FILE_APPEND) ;
 	   file_put_contents($fichier, "<head>",FILE_APPEND) ;
+     file_put_contents($fichier, '<meta charset="UTF-8" />',FILE_APPEND).
+     file_put_contents($fichier, "<meta name='viewport' content='width=device-width, initial-scale=1.0'>",FILE_APPEND);
+     file_put_contents($fichier, "<meta name='robots' content='index, follow'/>", FILE_APPEND);
 	   file_put_contents($fichier, "$metadata",FILE_APPEND);
 	   file_put_contents($fichier, "</head>",FILE_APPEND) ;
 	   file_put_contents($fichier, "<body>",FILE_APPEND) ;
 	   file_put_contents($fichier, nl2br($Contenu),FILE_APPEND) ;
-     if ($image == true){
-      file_put_contents($fichier, $imageC,FILE_APPEND) ;
+     if ($image == 'image'){
+      //file_put_contents($fichier, $imageC,FILE_APPEND);
+      echo "adding image";
      }
 	   file_put_contents($fichier, "</body>",FILE_APPEND) ;
 	   file_put_contents($fichier, "</html>",FILE_APPEND) ;
@@ -59,6 +63,8 @@
       { $CMD = $_GET['CMD'] ; //Appeler la commande demandée
         switch( $CMD )	
         { case 'HTML' : HTMLFICH(); break;
+          case 'header': heaader(); break;
+          case 'footer': footer(); break;
         default : echo 'ERREUR CMD inconnue '.$CMD ;
     } } }
     ?>

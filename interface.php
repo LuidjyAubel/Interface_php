@@ -56,11 +56,13 @@
             $article = $_POST['text1'];
             $Page = $_POST['Page'];
             $colorT = $_POST['colorT'];
+            $Iname = $_POST['Iname'];
+            $new4 = htmlspecialchars($article, ENT_QUOTES);
             $dateAr = strftime('%d/%m/%y, %H:%M');
          $DataBase = mysqli_connect('localhost:3308', 'root', '', 'interface');
           if ($Page == "blog"){
-         $Requete = "INSERT INTO article (id, NomA, PageS,textA, dateAr, colorTex ) 
-         VALUES (NULL,'$auteur','$Page', '$article', '$dateAr', '$colorT');";
+         $Requete = "INSERT INTO article (id, NomA, PageS,textA, dateAr, colorTex, Iname ) 
+         VALUES (NULL,'$auteur','$Page', '$new4', '$dateAr', '$colorT', '$Iname');";
          }else if ($Page =="veille") {
           $Requete = "INSERT INTO veille (id, NomA, PageS,textA, dateAr, colorTex ) 
           VALUES (NULL,'$auteur','$Page', '$article', '$dateAr', '$colorT');";
