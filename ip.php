@@ -1,6 +1,6 @@
 <?php
- $ip = $_SERVER['REMOTE_ADDR'];
- echo "$ip";
+ $ip2 = $_SERVER['REMOTE_ADDR'];
+ echo "$ip2<br/>";
  function getIp(){
     if(!empty($_SERVER['HTTP_CLIENT_IP'])){
       $ip = $_SERVER['HTTP_CLIENT_IP'];
