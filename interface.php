@@ -56,7 +56,8 @@
             $article = $_POST['text1'];
             $Page = $_POST['Page'];
             $colorT = $_POST['colorT'];
-            $Iname = $_POST['Iname'];
+            if (isset($_POST['Iname'])){
+            $Iname = $_POST['Iname'];}
             $new4 = htmlspecialchars($article, ENT_QUOTES);
             $dateAr = strftime('%d/%m/%y, %H:%M');
          $DataBase = mysqli_connect('localhost:3308', 'root', '', 'interface');
