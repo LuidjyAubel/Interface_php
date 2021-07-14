@@ -12,7 +12,7 @@
 <input type='submit' name='valider'/><br/>
 <?php
 function header1(){
-    echo "créer les meta données de notre page<br/>";
+    echo "créer le header de notre page<br/>";
     $titleS =  $_POST['TitleS'];
     $Tmenu = $_POST['Tmenu'];
     $Principal = array("Aceuil", "Article", "Test", "Contact");
