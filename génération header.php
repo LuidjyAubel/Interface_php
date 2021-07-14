@@ -15,7 +15,7 @@ function header1(){
     echo "créer les meta données de notre page<br/>";
     $titleS =  $_POST['TitleS'];
     $Tmenu = $_POST['Tmenu'];
-    $Principal = array("foo", "bar", "hello", "world");
+    $Principal = array("Aceuil", "Article", "Test", "Contact");
     $fichier = "header.php";
     //$fichier ="$Ftitle.html";
     file_put_contents($fichier, "<body>",FILE_APPEND) ;
